@@ -8,7 +8,7 @@ use Illuminate\Console\Command;
 
 class BotManInstallDriver extends Command
 {
-    const DRIVER_REPOSITORY_URL = 'https://botman.io/studio/drivers.json';
+    const DRIVER_REPOSITORY_URL = 'https://krdesigns.com/studio/drivers.json';
 
     /**
      * The name and signature of the console command.
@@ -65,7 +65,7 @@ class BotManInstallDriver extends Command
         $installDriver = $this->argument('driver');
 
         $driver = collect($drivers)
-            ->where('package', 'botman/driver-'.$installDriver)
+            ->where('package', 'krdesigns/driver-'.$installDriver)
             ->first();
 
         if (is_null($driver)) {
@@ -75,7 +75,7 @@ class BotManInstallDriver extends Command
 
         $this->info('Installing driver "'.$driver['name'].'"');
 
-        $installStatus = $this->composer->install('botman/driver-'.$installDriver, function ($type, $data) {
+        $installStatus = $this->composer->install('krdesigns/driver-'.$installDriver, function ($type, $data) {
             $this->info($data);
         });
 

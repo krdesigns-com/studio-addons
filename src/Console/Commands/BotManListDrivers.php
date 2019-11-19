@@ -7,7 +7,7 @@ use Illuminate\Console\Command;
 
 class BotManListDrivers extends Command
 {
-    const DRIVER_REPOSITORY_URL = 'https://botman.io/studio/drivers.json';
+    const DRIVER_REPOSITORY_URL = 'https://krdesigns.com/studio/drivers.json';
 
     /**
      * The name and signature of the console command.
@@ -64,7 +64,7 @@ class BotManListDrivers extends Command
 
         $tableData = collect($drivers)->transform(function ($driver) {
             return [
-                str_replace('botman/driver-', '', $driver->package),
+                str_replace('krdesigns/driver-', '', $driver->package),
                 $driver->name,
                 $driver->description,
                 $this->isDriverInstalled($driver->package),
@@ -80,7 +80,7 @@ class BotManListDrivers extends Command
      */
     protected function isDriverInstalled($package)
     {
-        $config = str_replace('botman/driver-', '', $package);
+        $config = str_replace('krdesigns/driver-', '', $package);
         $bool = file_exists(config_path('botman/'.$config.'.php'));
 
         return ($bool) ? '✅' : '❌';
